@@ -11,7 +11,8 @@ const Helpers = {
     rowComplete: (currentAttIndex) => {
         let attemptDict = JSON.parse(localStorage.getItem("attemptDict")) || attempts
         let currentAtt = attemptDict[currentAttIndex]
-        let lastElement = currentAtt.slice(-1)
+        console.log(currentAtt)
+        let lastElement = currentAtt.pop()
         if(lastElement[0] === " "){
             console.log("In here")
             return false
