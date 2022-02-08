@@ -8,8 +8,40 @@
   justify-content: center;
 }
 .single-grid{
-  width: 30px;
-  height: 30px;
+  /* padding-top: 5px; */
+  width: 5rem;
+  height: 5rem;
   margin: 2px;
-  border: 1px solid red;
+  border: 1px solid #3A3A3C;
+  text-align: center;
+  /* font-size: large; */
+
+  /* width: 100%; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.present{
+  background-color: #B59F3B;
+  border: 1px solid #B59F3B;
+  color: white;
+}
+
+.correct{
+  background-color: green;
+  border: 1px solid green;
+  color: white;
+}
+
+.absent{
+  background-color: #3A3A3C;
+  color: white;
 }
