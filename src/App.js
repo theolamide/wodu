@@ -36,7 +36,7 @@ function App() {
   
 
   return (
-    <div className="App">
+    <div className="root App">
           {"wọ́dù".toUpperCase()}
           <div className="full-grid">
             <div className="grid-row">

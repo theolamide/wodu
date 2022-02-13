@@ -1,15 +1,36 @@
+.root{
+  display: flex;
+  flex-direction: column;
+}
+
 .App {
   text-align: center;
-  /* border: 10px solid green; */
   height: 95vh;
+  justify-content: space-between;
+}
+
+.keyboard{
+  height: 200px; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.full-grid{
-
+.keyboard-row{
+  height: 30%;
 }
+
+.element{
+  height: 58px;
+  width: 50px;
+  flex: 1;
+  margin: 0 6px 0 0;
+}
+
+.enter{
+  width: 60px;
+}
+
 .grid-row{
   display: flex;
   justify-content: center;
