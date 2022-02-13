@@ -1,9 +1,16 @@
 .App {
   text-align: center;
   /* border: 10px solid green; */
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .full-grid{
+
+}
+.grid-row{
   display: flex;
   justify-content: center;
 }
