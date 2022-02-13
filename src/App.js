@@ -7,7 +7,7 @@ import Keyboard from './components/Keyboard';
 function App() {
   let nameOfTheDay = "OLAMI"
   const [answerDictionaryState, setAnswerDictionaryState] = useState((typeof(localStorage.getItem("answerDictionary")) === "object" ? localStorage.getItem("answerDictionary") : JSON.parse(localStorage.getItem("answerDictionary"))) || answerDictionary)
-  console.log("ANSWER DIC BACKGROUNDS", answerDictionaryState)
+  // console.log("ANSWER DIC BACKGROUNDS", answerDictionaryState)
   const [currentAttKey, setCurrentAttKey] = useState(JSON.parse(localStorage.getItem("currentAtt")) || 1) // This refers to the key to the current row being attempted
   const [currentIndex, setCurrentIndex] = useState(JSON.parse(localStorage.getItem("currentIndex")) || 0) // This referes to the current index of the row being attempted
   const [attemptDict, setAttemptDict] = useState(JSON.parse(localStorage.getItem("attemptDict")) || attempts ) // This is the whole attempt object. The whole grid, if you will.

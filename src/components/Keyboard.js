@@ -8,7 +8,7 @@ const Keyboard = ({buttonClick}) => {
     return(
             <div className="root keyboard">
                 {characters.map((arr, index) => 
-                <div key={index}  className="keyword-row">
+                <div key={index}  className="keyboard-row">
                     {arr.map((element, idx) => 
                         <button key={idx} className={`element ${element === 'enter' ? 'enter' : ''}`} onClick={()=> buttonClick(element)} >
                             {element === '<' ?  <FiDelete />: element.toUpperCase()}
