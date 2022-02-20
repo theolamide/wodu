@@ -118,14 +118,13 @@ const Helpers = {
     },
 
     play: () => {
-        let timeFactor = Helpers.nextDay >= Date.now
-        let completedBoard = Helpers.boardComplete
-        let gameStatus = localStorage.getItem("gameStatus") === "WIN"
+        let timeFactor = Helpers.nextDay()
+        let completedBoard = Helpers.boardComplete()
+        let gameStatus = localStorage.getItem("gameStatus") !== "WIN"
         let conditionsArr = [timeFactor, completedBoard, gameStatus]
         if (conditionsArr.filter(entry => entry === true).length === 3){
             return true
         }
-
         return false
     },
 
@@ -133,7 +132,7 @@ const Helpers = {
         let today = new Date()
         let tomorrowTime = today.setDate(today.getDate()+1)
         let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
-        return midNight
+        return midNight >= Date.now()
     }
 
 }

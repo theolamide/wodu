@@ -30,8 +30,7 @@ function App() {
       Helpers.deleteCharacter(currentAttKey, currentIndex, setCurrentIndex, setAttemptDict, nameOfTheDay.length)
       setAttemptDict(JSON.parse(localStorage.getItem("attemptDict")))
     } else {
-      console.log("IN HERE", element)
-      if (Helpers.rowComplete(currentAttKey)||Helpers.play()) return
+      if (Helpers.rowComplete(currentAttKey)&&!Helpers.play()) return
       let tempAttemptDict = {...attemptDict}
       let currentAttArr = tempAttemptDict[currentAttKey]
       // If already at the end, and element not "<", or "enter", do nothing.
@@ -53,17 +52,17 @@ if (!lastTimePlayed){
   localStorage.setItem("lastTimePlayed", Date.now())
 }
 
-console.log("FROM HELPERS", Helpers.nextDay())
-let nextDay = event.getDate() + 1
-let tomorrow = new Date()
-let tomorrowTime = tomorrow.setDate(tomorrow.getDate()+1)
-console.log(event.getDate(), typeof(event.getDate()), nextDay);
-console.log("Tomorrow", tomorrow, tomorrowTime, new Date(tomorrowTime).getHours())
-let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
-console.log("Tomorrow MIDNIGHT |", new Date(midNight), "|", midNight, "|", new Date(midNight).getHours())
-console.log(event.getUTCDate())
-console.log(lastTimePlayed)
-console.log(new Date(parseInt(lastTimePlayed)).getDate())
+// console.log("FROM HELPERS", Helpers.nextDay())
+// let nextDay = event.getDate() + 1
+// let tomorrow = new Date()
+// let tomorrowTime = tomorrow.setDate(tomorrow.getDate()+1)
+// console.log(event.getDate(), typeof(event.getDate()), nextDay);
+// console.log("Tomorrow", tomorrow, tomorrowTime, new Date(tomorrowTime).getHours())
+// let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
+// console.log("Tomorrow MIDNIGHT |", new Date(midNight), "|", midNight, "|", new Date(midNight).getHours())
+// console.log(event.getUTCDate())
+// console.log(lastTimePlayed)
+// console.log(new Date(parseInt(lastTimePlayed)).getDate())
   
 
   return (
