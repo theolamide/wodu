@@ -30,6 +30,14 @@ const Helpers = {
         return true
     },
 
+    boardComplete: () => {
+        if (localStorage.getItem("currentAtt") >= 6){
+            return true
+        }
+
+        return false
+    },
+
     deleteCharacter: (currentAttKey, currentIndex, setCurrentIndex, setAttemptDict, answerLength) => {
         // console.log("CURRENT INDEX", currentIndex)
         let answerAttemptDict = (JSON.parse(localStorage.getItem("attemptDict")) || attempts)
@@ -63,6 +71,7 @@ const Helpers = {
 
     answerCheck: (currentAttKey, nameOfTheDay, setAnswerDictionaryHere, setCurrentAttKey, setCurrentIndex) => {
         // Is the row complete?
+        let arrToReturn = [" ", " ", " ", " ", " "]
         if (Helpers.rowComplete(currentAttKey)){
             // If Yes, get word of the day and compare.
             // While comparing index for index, populate answerDictionary will appropriate value
@@ -92,10 +101,40 @@ const Helpers = {
             setCurrentAttKey(currentAtt)
             setCurrentIndex(0)
             localStorage.setItem("currentIndex", 0)
+            localStorage.setItem("lastTimePlayed", Date.now())
+            return answerColorArr
         }
 
-        // Else, do nothing.
+        // Else, do nothing but return the untouched array for futher checks.
+        return arrToReturn
     },
+
+    correctCheck: (status) => {
+        let toCheck = status.filter(entry => entry === 'correct')
+        if (toCheck.length === 5){
+            return true
+        }
+        return false
+    },
+
+    play: () => {
+        let timeFactor = Helpers.nextDay >= Date.now
+        let completedBoard = Helpers.boardComplete
+        let gameStatus = localStorage.getItem("gameStatus") === "WIN"
+        let conditionsArr = [timeFactor, completedBoard, gameStatus]
+        if (conditionsArr.filter(entry => entry === true).length === 3){
+            return true
+        }
+
+        return false
+    },
+
+    nextDay: () => {
+        let today = new Date()
+        let tomorrowTime = today.setDate(today.getDate()+1)
+        let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
+        return midNight
+    }
 
 }
 

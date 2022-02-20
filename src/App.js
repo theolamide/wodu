@@ -14,12 +14,24 @@ function App() {
 
   const buttonClick = (element) => {
     if (element === 'enter'){
-      Helpers.answerCheck(currentAttKey, nameOfTheDay, setAnswerDictionaryState, setCurrentAttKey, setCurrentIndex)
+      let answerArr = Helpers.answerCheck(currentAttKey, nameOfTheDay, setAnswerDictionaryState, setCurrentAttKey, setCurrentIndex)
+      let correct = Helpers.correctCheck(answerArr) //returns a boolean. True for correct answer and solved, False for incorrect and not solved.
+      if (correct){
+        // Set board status, last time played and time completed.
+        localStorage.setItem("gameStatus", "WIN")
+        localStorage.setItem("lastCompleted", Date.now())
+        localStorage.setItem("lastTimePlayed", Date.now())
+      } else {
+        // Set board status and last time played
+        localStorage.setItem("gameStatus", "IN_PROGRESS")
+        localStorage.setItem("lastTimePlayed", Date.now())
+      }
     } else if (element === '<'){
       Helpers.deleteCharacter(currentAttKey, currentIndex, setCurrentIndex, setAttemptDict, nameOfTheDay.length)
       setAttemptDict(JSON.parse(localStorage.getItem("attemptDict")))
     } else {
-      if (Helpers.rowComplete(currentAttKey)) return
+      console.log("IN HERE", element)
+      if (Helpers.rowComplete(currentAttKey)||Helpers.play()) return
       let tempAttemptDict = {...attemptDict}
       let currentAttArr = tempAttemptDict[currentAttKey]
       // If already at the end, and element not "<", or "enter", do nothing.
@@ -33,6 +45,25 @@ function App() {
       localStorage.setItem("attemptDict", JSON.stringify(tempAttemptDict))
     }
   }
+
+const event = new Date(Date.now());
+
+let lastTimePlayed = localStorage.getItem("lastTimePlayed")
+if (!lastTimePlayed){
+  localStorage.setItem("lastTimePlayed", Date.now())
+}
+
+console.log("FROM HELPERS", Helpers.nextDay())
+let nextDay = event.getDate() + 1
+let tomorrow = new Date()
+let tomorrowTime = tomorrow.setDate(tomorrow.getDate()+1)
+console.log(event.getDate(), typeof(event.getDate()), nextDay);
+console.log("Tomorrow", tomorrow, tomorrowTime, new Date(tomorrowTime).getHours())
+let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
+console.log("Tomorrow MIDNIGHT |", new Date(midNight), "|", midNight, "|", new Date(midNight).getHours())
+console.log(event.getUTCDate())
+console.log(lastTimePlayed)
+console.log(new Date(parseInt(lastTimePlayed)).getDate())
   
 
   return (
