@@ -10,7 +10,13 @@ function App() {
   // console.log("ANSWER DIC BACKGROUNDS", answerDictionaryState)
   const [currentAttKey, setCurrentAttKey] = useState(JSON.parse(localStorage.getItem("currentAtt")) || 1) // This refers to the key to the current row being attempted
   const [currentIndex, setCurrentIndex] = useState(JSON.parse(localStorage.getItem("currentIndex")) || 0) // This referes to the current index of the row being attempted
-  const [attemptDict, setAttemptDict] = useState(JSON.parse(localStorage.getItem("attemptDict")) || attempts ) // This is the whole attempt object. The whole grid, if you will.
+  const [attemptDict, setAttemptDict] = useState((typeof(localStorage.getItem("attemptDict")) === "object" ? localStorage.getItem("attemptDict") : JSON.parse(localStorage.getItem("attemptDict")))|| attempts ) // This is the whole attempt object. The whole grid, if you will.
+
+  // console.log("NEXT DAY", Helpers.nextDay(), Date.now())
+  // if (Helpers.nextDay()){
+  //   Helpers.dayReset()
+  //   window.location.reload()
+  // }
 
   const buttonClick = (element) => {
     if (element === 'enter'){

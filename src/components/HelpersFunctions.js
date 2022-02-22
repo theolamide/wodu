@@ -16,6 +16,8 @@ export const answerDictionary = {
     6: null
 }
 
+export const buttonBackground = {}
+
 const Helpers = {
     rowComplete: (currentAttKey) => {
         let attemptDict = JSON.parse(localStorage.getItem("attemptDict")) || attempts
@@ -132,7 +134,15 @@ const Helpers = {
         let today = new Date()
         let tomorrowTime = today.setDate(today.getDate()+1)
         let midNight = new Date(tomorrowTime).setHours(0,0,0,0)
+        console.log(midNight)
         return midNight >= Date.now()
+    },
+
+    dayReset: () => {
+        localStorage.removeItem("attemptDict")
+        localStorage.removeItem("currentAtt")
+        localStorage.removeItem("currentIndex")
+        localStorage.removeItem("answerDictionary")
     }
 
 }
